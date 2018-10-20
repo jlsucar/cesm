@@ -7,8 +7,9 @@
 How To Use This Document
 ------------------------
 
-This guide instructs both novice and experienced users on downloading, building and
-running `CESM2 <http://www.cesm.ucar.edu/models/cesm2.0>`_.
+This guide instructs both novice and experienced users on downloading,
+building and running `CESM2
+<http://www.cesm.ucar.edu/models/cesm2.0>`_.
 
 CESM2 is built on the `CIME framework <http://github.com/ESMCI/cime>`_.
 
@@ -24,9 +25,14 @@ ad hoc order.
 
     Throughout the guide, this presentation style indicates shell
     commands and options, fragments of code, namelist variables, etc.
-    Where examples from an interactive shell session are presented,
-    lines starting with '>' indicate the shell prompt.
 
+.. note:: 
+
+   Variables presented as ``$VAR`` in this guide typically refer to variables in XML files
+   in a CESM case. From within a case directory, you can determine the value of such a
+   variable with ``./xmlquery VAR``. In some instances, ``$VAR`` refers to a shell
+   variable or some other variable; we try to make these exceptions clear.
+    
 Please feel free to provide feedback to the `CESM forum <https://bb.cgd.ucar.edu/>`_ about how to improve the
 documentation. 
 
@@ -91,9 +97,9 @@ installing and running CESM2.
 
 -  perl 5 
 
--  subversion client (version 1.8 or greater) for downloading CAM and POP
+-  subversion client (version 1.8 or greater) for downloading CAM, POP, and WW3
 
--  git client (1.8 or greater recommended)
+-  git client (1.8 or greater)
 
 -  Fortran compiler with support for Fortran 2003
 
@@ -113,12 +119,12 @@ installing and running CESM2.
 
 -  `CMake 2.8.6 or newer <http://www.cmake.org/>`_ 
 
-.. warning:: NetCDF must be built with the same Fortran compiler as CESM. In the netCDF build the FC environment variable specifies which Fortran compiler to use. CESM is written mostly in Fortran, netCDF is written in C. Because there is no standard way to call a C program from a Fortran program, the Fortran to C layer between CESM and netCDF will vary depending on which Fortran compiler you use for CESM. When afunction in the netCDF library is called from a Fortran application, the netCDF Fortran API calls the netCDF C library. If you do not use the same compiler to build netCDF and CESM you will in most cases get errors from netCDF saying certain netCDF functions cannot be found.
+.. warning:: NetCDF must be built with the same Fortran compiler as CESM. In the netCDF build the FC environment variable specifies which Fortran compiler to use. CESM is written mostly in Fortran, netCDF is written in C. Because there is no standard way to call a C program from a Fortran program, the Fortran to C layer between CESM and netCDF will vary depending on which Fortran compiler you use for CESM. When a function in the netCDF library is called from a Fortran application, the netCDF Fortran API calls the netCDF C library. If you do not use the same compiler to build netCDF and CESM you will in most cases get errors from netCDF saying certain netCDF functions cannot be found.
 
 Parallel-netCDF, also referred to as pnetcdf, is optional. If a user
 chooses to use pnetcdf, version 1.7.0 or later should be used with CESM.
 It is a library that is file-format compatible with netCDF, and provides
 higher performance by using MPI-IO. Pnetcdf is enabled by setting the
-``$PNETCDF_PATH`` variable in the ``Macros.make`` file. 
+``$PNETCDF_PATH`` Makefile variable in the ``Macros.make`` file.
 
 .. _CIME: http://esmci.github.io/cime
